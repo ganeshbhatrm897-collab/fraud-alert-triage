@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fraud Alert Triage</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Simulation · No final determination</p>
+          <h1>Agentic Fraud Alert Triage & Dispute Resolution</h1>
+        </div>
+        <div class="badge">Demo mode</div>
+      </header>
+
+      <section class="panel scenario-panel">
+        <div class="panel-header">
+          <h2>Demo scenarios</h2>
+          <span class="small-note">Simulated records only</span>
+        </div>
+        <div id="scenario-buttons" class="scenario-buttons"></div>
+      </section>
+
+      <section class="content-grid">
+        <aside class="panel form-panel">
+          <h2>Investigation intake</h2>
+          <form id="investigation-form">
+            <div class="field-grid">
+              <label>
+                Transaction ID
+                <input name="transaction_id" value="TXN-90377" required />
+              </label>
+              <label>
+                Customer ID
+                <input name="customer_id" value="CUST-1042" required />
+              </label>
+              <label>
+                Amount
+                <input name="amount" type="number" step="0.01" value="2450" required />
+              </label>
+              <label>
+                Merchant
+                <input name="merchant" value="Northwind Luxury Goods" required />
+              </label>
+              <label>
+                Device ID
+                <input name="device_id" value="DEV-NEW-781" required />
+              </label>
+              <label>
+                Location
+                <input name="location" value="Dubai, UAE" required />
+              </label>
+              <label>
+                Channel
+                <select name="channel">
+                  <option value="mobile">mobile</option>
+                  <option value="web">web</option>
+                  <option value="app">app</option>
+                </select>
+              </label>
+              <label>
+                Alert type
+                <select name="alert_type">
+                  <option value="transaction">transaction</option>
+                  <option value="dispute">dispute</option>
+                </select>
+              </label>
+              <label class="full-width">
+                Dispute reason
+                <input name="dispute_reason" placeholder="Only required for disputes" />
+              </label>
+              <label class="full-width">
+                Notes
+                <textarea name="notes" rows="4" placeholder="Add context for the alert or dispute."></textarea>
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="primary-btn">Analyze</button>
+              <button type="button" id="reset-button" class="secondary-btn">Reset</button>
+            </div>
+          </form>
+          <div id="api-message" class="api-message" aria-live="polite"></div>
+        </aside>
+
+        <section class="panel report-panel">
+          <div class="summary-box">
+            <div>
+              <p class="card-label">Risk summary</p>
+              <h3 id="risk-band">No report yet</h3>
+            </div>
+            <div class="score-pill" id="risk-score">--</div>
+          </div>
+
+          <div id="loading" class="loading hidden">Reviewing evidence...</div>
+
+          <div class="detail-section">
+            <h3>Investigation timeline</h3>
+            <ol id="timeline" class="timeline"></ol>
+          </div>
+
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h3>Supporting evidence</h3>
+              <ul id="supporting-evidence" class="evidence-list"></ul>
+            </div>
+            <div class="detail-card">
+              <h3>Contradicting evidence</h3>
+              <ul id="contradicting-evidence" class="evidence-list"></ul>
+            </div>
+            <div class="detail-card wide">
+              <h3>Missing information</h3>
+              <ul id="missing-information" class="evidence-list"></ul>
+            </div>
+            <div class="detail-card wide">
+              <h3>Recommendation</h3>
+              <p id="recommended-next-step" class="recommendation">No recommendation yet.</p>
+              <p id="human-review" class="review-status"></p>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
